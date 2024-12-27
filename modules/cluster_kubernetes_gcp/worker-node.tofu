@@ -48,29 +48,18 @@ resource "null_resource" "remote_script_execution_worker" {
   for_each = google_compute_instance.worker_node
   depends_on = [google_compute_instance.worker_node]
 
-  provisioner "file" {
-    source      = var.path_worker
-    destination = "/tmp/remote-script.sh"
-
+  provisioner "remote-exec" {
+    inline = [
+      "curl -o /tmp/worker.sh https://raw.githubusercontent.com/RomainValmo/Kubernetes/main/Install_kube_cilium_helm/worker.sh",
+      "chmod +x /tmp/worker.sh",
+      "sudo /tmp/worker.sh",
+      "rm -rf /tmp/worker.sh"
+    ]
     connection {
       type        = "ssh"
       user        = local.ssh_host_worker[each.key]
       private_key = file(var.private_key_ssh)
       host        = each.value.network_interface[0].access_config[0].nat_ip 
-    }
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/remote-script.sh",  
-      "sudo /tmp/remote-script.sh"       
-    ]
-
-    connection {
-      type        = "ssh"
-      user        = local.ssh_host_worker[each.key]
-      private_key = file(var.private_key_ssh)
-      host        = each.value.network_interface[0].access_config[0].nat_ip
     }
   }
 }
