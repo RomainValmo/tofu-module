@@ -1,24 +1,11 @@
 variable "aws_access_key" {
-  type    = string
-  default = "YOUR_ACCESS_KEY"
+    type = string
+  
 }
 
 variable "aws_secret_key" {
-  type    = string
-  default = "YOUR_SECRET_KEY"
-}
-
-variable "aws_region" {
-  type    = string
-  default = "eu-west-3"
-
-}
-
-variable "ssh_key" {
-  type        = string
-  default     = "./ssh.pub"
-  description = "Path to your SSh key public"
-
+    type = string
+  
 }
 
 variable "masternode" {
@@ -71,28 +58,16 @@ variable "workernode" {
   }
 }
 
-
-
-variable "ssh_host" {
+variable "ssh_key" {
   type        = string
-  description = "SSH user"
-  default     = "ubuntu"
-}
-
-variable "private_key_ssh" {
-  description = "Path to the private key"
-  type        = string
-  default     = "./ssh"
+  default     = "./ssh.pub"
+  description = "Path to your SSh key public"
 
 }
 
-variable "network_ip_range" {
-  type    = string
-  default = "10.132.0.0/16"
-
-}
-
-variable "subnet_ip_range" {
-  type    = string
-  default = "10.132.0.0/20"
+variable "ssh_private_key" { 
+    type        = string
+    default     = "./ssh"
+    description = "Path to your SSh key private"
+  
 }
