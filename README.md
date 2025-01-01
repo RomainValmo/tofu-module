@@ -14,6 +14,12 @@ After if you are used with Terraform , the most of command are similiar
 
 1. Create a Kubernetes cluster on GCP provider. 
 
-Can be used to create a dev or trainning. Not be used from scratch to prod Env.
+Can be used to create a dev or trainning environnement. Not be used from scratch to prod Env.
+
+    Contain: Masternode(desired number), Workernode(desired number), network and subnetwork (used by k8s), and install script for Masternode and Wokernode with Kubeadm,Kube-dashboard, Falco, and cilium
+
+2. Create a Kubernetes cluster on AWS provider
+
+Can be used to create a Dev or trainning environnement. Not be used from scratch to prod Env.  
 
     Contain: Masternode(desired number), Workernode(desired number), network and subnetwork (used by k8s), and install script for Masternode and Wokernode with Kubeadm,Kube-dashboard, Falco, and cilium
