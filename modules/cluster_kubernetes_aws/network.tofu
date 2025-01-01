@@ -87,8 +87,8 @@ resource "aws_security_group" "kube_worker_sg" {
   ingress {
     from_port   = 0
     to_port     = 0
-    protocol    = "tcp"
-    cidr_blocks = ["10.132.0.0/20"]
+    protocol    = "-1"
+    cidr_blocks = [var.network_ip_range]
 
   }
 
@@ -157,6 +157,14 @@ resource "aws_security_group" "kube_master_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [var.network_ip_range]
+
   }
 
   tags = {

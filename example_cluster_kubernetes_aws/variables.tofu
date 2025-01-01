@@ -65,7 +65,7 @@ variable "ssh_key" {
 
 }
 
-variable "ssh_private_key" { 
+variable "private_key_ssh" { 
     type        = string
     default     = "./ssh"
     description = "Path to your SSh key private"
